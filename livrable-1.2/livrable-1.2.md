@@ -31,6 +31,8 @@ les ficheirs de `/etc/nginx/sites-available` sont clonés dans le repos
 			`fastcgi_pass unix:/var/run/php/php` <span style="color:red">8.3 </span>`-fpm.sock;`
 		`}`
 	`}`
+- on crée un lien symbolique :
+  `sudo ln -s /etc/nginx/sites-available/`<span style="color:red">newhost</span>`.local /etc/nginx/sites-enabled/`
 
 - à l'adresse `/var/www/newhost` il faut créer un fichier `index.php`
 	- commande 1 :
