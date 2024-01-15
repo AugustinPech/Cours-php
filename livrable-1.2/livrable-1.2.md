@@ -41,3 +41,8 @@ les ficheirs de `/etc/nginx/sites-available` sont clonés dans le repos
  	- commande : 
 `sudo vi index.php`
 	- ici le contenu est une ligne de texte pour tester.
+
+- il faut ajouter une ligne au fichier `etc/hosts` 
+	- commande 1 :
+	`sudo vi /etc/hosts`
+	- il faut rajouter la ligne `127.0.0.1	`<span style="color:red">newhost</span>`.local`
