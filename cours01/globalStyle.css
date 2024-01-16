@@ -109,3 +109,19 @@ tbody th:not(:first-child) {
     animation-delay: -33s;
     transform-origin: -14% -9%;
 }
+
+#video{
+    aspect-ratio: 16/9;
+    width:100%;
+}
+
+.sur_image {
+    background-color:rgba(255, 255, 255, 0.596);
+    border: 1px solid blue ;
+    margin:1%;
+    padding:5px 5px 5px 5px
+}
+
+main.calc {
+    background-image:url(https://elfa.com/-/media/qbank/marketing-image---elfa-story/elfa_storage_solution_garage_elise_after.ashx?h=780&iar=0&w=1280);
+}
