@@ -19,7 +19,7 @@
       <div class="container-fluid">
         <!-- set our "brand" box with the logo of our brand -->
         <a class="navbar-brand" href="../../index.html">
-          <img src="../../img/logoAAJA2.svg" alt="Logo AAJA">
+          <img src="img/logoAAJA2.svg" alt="Logo AAJA">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
