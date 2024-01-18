@@ -13,9 +13,15 @@
 </head>
 
 <body>
+<?php include '../pages/header.php'; ?>
     <main class="">
-        <h1 class="">Bienvenue</h1>
+        <?php 
+        $files = scandir('../contact', SCANDIR_SORT_DESCENDING);
+        $newest_file = $files[0];
+        include "../contact/$newest_file";
+        ?>
     </main>
+    <?php include '../pages/footer.php'; ?>
 </body>
 
 </html>

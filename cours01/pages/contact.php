@@ -8,22 +8,54 @@ include 'header.php';
         <div class="container" id="fields">
             <fieldset class="border p-3 bg-body-secondary bg-opacity-50 my-3 d-flex flex-column justify-content-evenly">
                 <legend>Vos coordonnées :</legend>
-                <label for="prenom">Votre civilité :</label>
+
+                <label for="gender">Votre civilité :</label>
+                <!-- mon code est transfobe sinon je n'ai rien à valider -->
+                <div class="d-flex flex-row justify-content-center text-danger ">
+                    <?php if ($_POST["gender"]!= 'male' && $_POST["gender"]!= 'female') {
+                    $errMsg = "information GENRE manquante";
+                    echo $errMsg;
+                } ?></div>
                 <select name="gender" id="gender" class="">
+                    <option value="other"> Cela ne vous regarde pas </option>
                     <option value="male"> Masculin </option>
                     <option value="female"> Féminin </option>
-                    <option value="camel"> Cela ne vous regarde pas </option>
+
                 </select>
+
                 <label for="nom">Nom :</label>
+                <div class="d-flex flex-row justify-content-center text-danger ">
+                    <?php if (empty($_POST["nom"])) {
+                    $errMsg = "information NOM manquante";
+                    echo $errMsg;
+                } ?></div>
+
                 <input type="text" name="nom" id="nom" placeholder="Ex: Mouse" size="32" maxlength="30" autofocus><br>
+                
                 <label for="prenom">Votre Prénom :</label>
+                <div class="d-flex flex-row justify-content-center text-danger ">
+                    <?php if (empty($_POST["prenom"])) {
+                    $errMsg = "information PRENOM manquante";
+                    echo $errMsg;
+                } ?></div>
                 <input type="text" name="prenom" id="prenom" placeholder="Ex: Mickey" size="32" maxlength="30"><br>
+                
                 <label for="email"> Votre adresse mail :</label>
-                <input type="email" name="email" id="email" placeholder="mickey.mouse@disney.com">
+                <div class="d-flex flex-row justify-content-center text-danger ">
+                    <?php if (filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)==false) {
+                    $errMsg = "information EMAIL manquante";
+                    echo $errMsg;
+                } ?></div>
+                <input type="text" name="email" id="email" placeholder="mickey.mouse@disney.com">
             </fieldset>
 
             <fieldset class="border p-3 bg-body-secondary bg-opacity-50 mb-3 bg">
                 <legend>Votre statut :</legend>
+                <div class="d-flex flex-row justify-content-center text-danger ">
+                    <?php if (empty($_POST["statut"])) {
+                    $errMsg = "information SATUT manquante";
+                    echo $errMsg;
+                } ?></div>
                 <p>
                     Etes-vous :
                     <input type="radio" name="statut" value="particulier" id="particulier">
@@ -46,7 +78,13 @@ include 'header.php';
                     <option value="depannage">Dépannage ponctuel</option>
                 </select><br>
                 <label for="message">Votre Message :</label>
+
                 <textarea name="message" id="message" style="width: 100%;" rows="10"></textarea>
+                <div class="d-flex flex-row justify-content-center text-danger ">
+                    <?php if (strlen($_POST["message"])<6) {
+                    $errMsg = "Minimum 5 caractères";
+                    echo $errMsg;
+                } ?></div>
             </fieldset>
             <fieldset class="d-flex justify-content-end mb-3">
                 <div id="submit">
