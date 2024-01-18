@@ -1,10 +1,12 @@
-
 <?php
 
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
+
 if ($page == 'Contact') {
     include 'pages/contact.php';
+} else if ($page == 'traitement') {
+    include 'traitement/traitement.php';
 } else if ($page == 'Hobby') {
     include 'pages/hobby.php';
 } else if ($page == 'CV') {

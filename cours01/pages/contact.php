@@ -4,7 +4,7 @@ $metadescription = 'Formulaire de contact d&apos;Augustin Pech';
 include 'header.php';
 ?>
 <main class="container">
-    <form method="post" action="/cours01/index.php?page=Contact">
+    <form method="post" action="/cours01/index.php?page=traitement">
         <div class="container" id="fields">
             <fieldset class="border p-3 bg-body-secondary bg-opacity-50 my-3 d-flex flex-column justify-content-evenly">
                 <legend>Vos coordonnées :</legend>
@@ -60,12 +60,4 @@ include 'header.php';
 
 <?php
 include 'footer.php';
-$prenom = filter_input(INPUT_POST,'prenom',  FILTER_SANITIZE_SPECIAL_CHARS);
-$nom = filter_input(INPUT_POST,'nom',  FILTER_SANITIZE_SPECIAL_CHARS);
-$gender = filter_input(INPUT_POST,'gender',  FILTER_SANITIZE_SPECIAL_CHARS);
-
-$formulaire = "ID : $prenom - $nom '/n 'Identified as : $gender";
-echo $formulaire;
-$file='/var/www/cours01/contact/contact.txt';
-file_put_contents($file, $formulaire);
 ?>
