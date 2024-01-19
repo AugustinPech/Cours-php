@@ -16,7 +16,7 @@ include 'header.php';
 
 ?>
 <main class="container">
-    <form method="post" action="/cours01/index.php?page=Contact">
+    <form method="post" action="/cours01/index.php?page=traitement">
         <div class="container" id="fields">
             <fieldset class="border p-3 bg-body-secondary bg-opacity-50 my-3 d-flex flex-column justify-content-evenly">
                 <legend>Vos coordonnées :</legend>
