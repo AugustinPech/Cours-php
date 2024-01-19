@@ -12,6 +12,8 @@ include 'header.php';
       } else {
         $_SESSION['count']=$_SESSION['count']+1;
       }
+      $formErrors = array_fill_keys(array_keys($_POST), 'ok');
+
 ?>
 <main class="container">
     <form method="post" action="/cours01/index.php?page=Contact">
@@ -23,8 +25,8 @@ include 'header.php';
                 <!-- mon code est transfobe sinon je n'ai rien à valider -->
                 <div class="d-flex flex-row justify-content-center text-danger ">
                     <?php if (isset($_POST["gender"]) && $_POST["gender"]!= 'male' && $_POST["gender"]!= 'female') {
-                    $errMsg = "information GENRE manquante";
-                    echo $errMsg;
+                    $formErrors["gender"]= "information GENRE manquante";
+                    echo $formErrors["gender"];
                 } ?></div>
                 <select name="gender" id="gender" class="">
                     <option value="other"> Cela ne vous regarde pas </option>
@@ -36,8 +38,8 @@ include 'header.php';
                 <label for="nom">Nom :</label>
                 <div class="d-flex flex-row justify-content-center text-danger ">
                     <?php if (isset($_POST["nom"]) && empty($_POST["nom"])) {
-                    $errMsg = "information NOM manquante";
-                    echo $errMsg;
+                    $formErrors["nom"] = "information NOM manquante";
+                    echo $formErrors["nom"];
                 } ?></div>
 
                 <input type="text" name="nom" id="nom" placeholder="Ex: Mouse" size="32" maxlength="30" autofocus><br>
@@ -45,16 +47,16 @@ include 'header.php';
                 <label for="prenom">Votre Prénom :</label>
                 <div class="d-flex flex-row justify-content-center text-danger ">
                     <?php if (isset($_POST["prenom"]) && empty($_POST["prenom"])) {
-                    $errMsg = "information PRENOM manquante";
-                    echo $errMsg;
+                    $formErrors["prenom"] = "information PRENOM manquante";
+                    echo $formErrors["prenom"];
                 } ?></div>
                 <input type="text" name="prenom" id="prenom" placeholder="Ex: Mickey" size="32" maxlength="30"><br>
                 
                 <label for="email"> Votre adresse mail :</label>
                 <div class="d-flex flex-row justify-content-center text-danger ">
                     <?php if (isset($_POST["email"]) && filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)==false) {
-                    $errMsg = "information EMAIL manquante";
-                    echo $errMsg;
+                    $formErrors["email"] = "information EMAIL manquante";
+                    echo $formErrors["email"];
                 } ?></div>
                 <input type="text" name="email" id="email" placeholder="mickey.mouse@disney.com">
             </fieldset>
@@ -63,8 +65,8 @@ include 'header.php';
                 <legend>Votre statut :</legend>
                 <div class="d-flex flex-row justify-content-center text-danger ">
                     <?php if (isset($_POST["status"]) && empty($_POST["statut"])) {
-                    $errMsg = "information SATUT manquante";
-                    echo $errMsg;
+                    $formErrors["statut"] = "information SATUT manquante";
+                    echo $formErrors["statut"];
                 } ?></div>
                 <p>
                     Etes-vous :
@@ -92,8 +94,8 @@ include 'header.php';
                 <textarea name="message" id="message" style="width: 100%;" rows="10"></textarea>
                 <div class="d-flex flex-row justify-content-center text-danger ">
                     <?php if (isset($_POST["message"]) && strlen($_POST["message"])<6) {
-                    $errMsg = "Minimum 5 caractères";
-                    echo $errMsg;
+                    $formErrors["message"] = "Minimum 5 caractères";
+                    echo $formErrors["message"];
                 } ?></div>
             </fieldset>
             <fieldset class="d-flex justify-content-end mb-3">
@@ -111,4 +113,5 @@ include 'footer.php';
 //var_dump($_SESSION); 
 $nbPages = $_SESSION['count'];
 echo "session active = $id_session  -------- nombre de page vue = $nbPages";
+print_r($formErrors);
 ?>
