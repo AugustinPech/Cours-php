@@ -2,20 +2,35 @@
 
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
+$directory = 'pages/';
+$test = dirname($_SERVER['PHP_SELF']);
+$filesPath = glob($directory . '*');
 
-if ($page == 'Contact') {
-    include 'pages/contact.php';
-} else if ($page == 'traitement') {
-    include 'traitement/traitement.php';
-} else if ($page == 'Hobby') {
-    include 'pages/hobby.php';
-} else if ($page == 'CV') {
-    include 'pages/Augustin.php';
+$filesNames = array_map(
+    function ($val) {
+        return explode(".", $val)[0];
+    },
+    scandir('pages', SCANDIR_SORT_NONE)
+);
+
+$indexName = array_search($page, $filesNames);
+$indexPath = array_search(
+    $page,
+    array_map(
+        function ($val) {
+            return explode(".", explode('pages/', $val)[1])[0];
+        },
+        $filesPath
+    )
+);
+
+
+if (isset($page) && $page == $filesNames[$indexName] && $page!='404') {
+    include $filesPath[$indexPath];
 } else {
     header('HTTP/1.0 404 Not Found');
+    $metatitle = 'Erreur 404 - Not Found';
     include 'pages/header.php';
     include 'pages/404.html';
     include 'pages/footer.php';
 }
-
-?>
