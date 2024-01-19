@@ -2,9 +2,15 @@
 $metatitle = 'Contact - Augustin PECH';
 $metadescription = 'Formulaire de contact d&apos;Augustin Pech';
 include 'header.php';
+    //On démarre une nouvelle session
+    session_start();
+    //On utilise session_id() pour récupérer l'id de session s'il existe.
+    //$id_session = session_id();
+    $id_session = date('y-m-d_h:i:s');
+    //echo $id_session;
 ?>
 <main class="container">
-    <form method="post" action="/cours01/index.php?page=traitement">
+    <form method="post" action="/cours01/index.php?page=Contact">
         <div class="container" id="fields">
             <fieldset class="border p-3 bg-body-secondary bg-opacity-50 my-3 d-flex flex-column justify-content-evenly">
                 <legend>Vos coordonnées :</legend>
@@ -12,7 +18,7 @@ include 'header.php';
                 <label for="gender">Votre civilité :</label>
                 <!-- mon code est transfobe sinon je n'ai rien à valider -->
                 <div class="d-flex flex-row justify-content-center text-danger ">
-                    <?php if ($_POST["gender"]!= 'male' && $_POST["gender"]!= 'female') {
+                    <?php if (isset($_POST["gender"]) && $_POST["gender"]!= 'male' && $_POST["gender"]!= 'female') {
                     $errMsg = "information GENRE manquante";
                     echo $errMsg;
                 } ?></div>
@@ -25,7 +31,7 @@ include 'header.php';
 
                 <label for="nom">Nom :</label>
                 <div class="d-flex flex-row justify-content-center text-danger ">
-                    <?php if (empty($_POST["nom"])) {
+                    <?php if (isset($_POST["nom"]) && empty($_POST["nom"])) {
                     $errMsg = "information NOM manquante";
                     echo $errMsg;
                 } ?></div>
@@ -34,7 +40,7 @@ include 'header.php';
                 
                 <label for="prenom">Votre Prénom :</label>
                 <div class="d-flex flex-row justify-content-center text-danger ">
-                    <?php if (empty($_POST["prenom"])) {
+                    <?php if (isset($_POST["prenom"]) && empty($_POST["prenom"])) {
                     $errMsg = "information PRENOM manquante";
                     echo $errMsg;
                 } ?></div>
@@ -42,7 +48,7 @@ include 'header.php';
                 
                 <label for="email"> Votre adresse mail :</label>
                 <div class="d-flex flex-row justify-content-center text-danger ">
-                    <?php if (filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)==false) {
+                    <?php if (isset($_POST["email"]) && filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)==false) {
                     $errMsg = "information EMAIL manquante";
                     echo $errMsg;
                 } ?></div>
@@ -52,7 +58,7 @@ include 'header.php';
             <fieldset class="border p-3 bg-body-secondary bg-opacity-50 mb-3 bg">
                 <legend>Votre statut :</legend>
                 <div class="d-flex flex-row justify-content-center text-danger ">
-                    <?php if (empty($_POST["statut"])) {
+                    <?php if (isset($_POST["status"]) && empty($_POST["statut"])) {
                     $errMsg = "information SATUT manquante";
                     echo $errMsg;
                 } ?></div>
@@ -81,7 +87,7 @@ include 'header.php';
 
                 <textarea name="message" id="message" style="width: 100%;" rows="10"></textarea>
                 <div class="d-flex flex-row justify-content-center text-danger ">
-                    <?php if (strlen($_POST["message"])<6) {
+                    <?php if (isset($_POST["message"]) && strlen($_POST["message"])<6) {
                     $errMsg = "Minimum 5 caractères";
                     echo $errMsg;
                 } ?></div>

@@ -19,5 +19,3 @@ $file='./contact/contact'.date('y-m-d_h:i:s').'.txt';
 file_put_contents($file, $formulaire);
 
 header("Location:  /cours01/traitement/resultat.php");
-
-?>
