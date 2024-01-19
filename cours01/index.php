@@ -27,6 +27,9 @@ $indexPath = array_search(
 
 if (isset($page) && $page == $filesNames[$indexName] && $page!='404') {
     include $filesPath[$indexPath];
+    // je suis parfaitement contient de la gigantesque faille de sécurité que j'ai laissé ici
+    // il faudrait que mon dossier page/ soit clean
+    // i.e. déplacer globalStyles.css et traitement.php...
 } else {
     header('HTTP/1.0 404 Not Found');
     $metatitle = 'Erreur 404 - Not Found';
