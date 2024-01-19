@@ -7,7 +7,11 @@ include 'header.php';
     //On utilise session_id() pour récupérer l'id de session s'il existe.
     //$id_session = session_id();
     $id_session = date('y-m-d_h:i:s');
-    //echo $id_session;
+    if (!isset($_SESSION['count'])) {
+        $_SESSION['count'] = 0;
+      } else {
+        $_SESSION['count']=$_SESSION['count']+1;
+      }
 ?>
 <main class="container">
     <form method="post" action="/cours01/index.php?page=Contact">
@@ -104,4 +108,7 @@ include 'header.php';
 
 <?php
 include 'footer.php';
+//var_dump($_SESSION); 
+$nbPages = $_SESSION['count'];
+echo "session active = $id_session  -------- nombre de page vue = $nbPages";
 ?>
